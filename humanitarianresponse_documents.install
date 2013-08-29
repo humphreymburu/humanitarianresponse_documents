@@ -1,0 +1,28 @@
+<?php
+/**
+ * @file Installs HumanitarianResponse Documents
+ */
+
+/**
+ * Implements hook_install()
+ */
+function humanitarianresponse_documents_install() {
+  
+  // Make sure a private file system exists
+  $dir = conf_path().'/private';
+  if (!is_dir($dir) && !drupal_mkdir($dir, NULL, TRUE)) {
+    return;
+  }
+  
+  // Make sure it's writable
+  if (!is_writable($dir) && !drupal_chmod($dir)) {
+    return;
+  }
+  
+  // Create htaccess
+  file_create_htaccess($dir);
+  
+  // Set variable
+  variable_set('file_private_path', $dir);
+}
+

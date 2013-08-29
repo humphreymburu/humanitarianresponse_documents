@@ -1,0 +1,14 @@
+<?php
+/**
+ * @file
+ */
+
+include_once('humanitarianresponse_documents.features.inc');
+
+/**
+ * Implements hook_cron()
+ * Added some code
+ */
+function humanitarianresponse_documents_cron() {
+  humanitarianresponse_core_feeds_check('csv_document_types', 'http://terms.humanitarianresponse.info/document-types.csv');
+}
